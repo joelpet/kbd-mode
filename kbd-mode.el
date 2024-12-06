@@ -268,7 +268,8 @@ For details, see `https://github.com/kmonad/kmonad'."
 This accommodates for example double quotes which are keycodes in
 KMonad."
   (when (derived-mode-p 'kbd-mode)
-    (font-lock-fontify-buffer)))
+    (if (fboundp 'font-lock-flush) (font-lock-flush)
+      (with-no-warnings (font-lock-fontify-buffer)))))
 
 ;; Associate the `.kbd' ending with `kbd-mode'.
 ;;;###autoload
